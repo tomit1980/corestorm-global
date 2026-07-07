@@ -3,6 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Security: CSP allows only self-hosted assets, plus the exact JSON-LD
+       block below via hash (recompute if that block's content changes —
+       see the node -e snippet in the security review). form-action is
+       scoped to 'self' until a real form backend is wired up. -->
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self';
+                 img-src 'self' data:;
+                 font-src 'self' data:;
+                 style-src 'self';
+                 script-src 'self' 'sha256-6swUAD31ybg935JdfkdoZfq/l2xflR7KH4ZZCOwAnKs=';
+                 object-src 'none';
+                 base-uri 'self';
+                 form-action 'self';">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+
   <title>CoreStorm Global | Australian Solar &amp; Renewable Energy — Exported Worldwide</title>
   <meta name="description" content="CoreStorm Global buys and sells premium Australian solar panels, inverters, batteries and off-grid systems — supplying local customers and exporting to the UK and Europe DDP.">
   <meta name="keywords" content="solar panels Australia, solar inverters, battery storage, off-grid systems, renewable energy export, solar UK Europe, commercial solar, utility solar">
