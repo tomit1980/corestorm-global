@@ -1,0 +1,11 @@
+# Dependencies
+node_modules/
+
+# Build tooling output (regenerate with the build script)
+build/
+
+# Logs & OS cruft
+*.log
+npm-debug.log*
+.DS_Store
+Thumbs.db

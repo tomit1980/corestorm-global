@@ -1,0 +1,22 @@
+{
+  "name": "corestorm-global",
+  "version": "1.0.0",
+  "description": "CoreStorm Global — Australian solar & renewable energy marketing site, with a build step that packages everything into one self-contained, CSP-safe HTML file.",
+  "scripts": {
+    "build": "node build.js"
+  },
+  "keywords": [
+    "solar",
+    "renewable-energy",
+    "marketing-site",
+    "static-site",
+    "self-contained"
+  ],
+  "author": "CoreStorm Global",
+  "license": "UNLICENSED",
+  "private": true,
+  "type": "commonjs",
+  "dependencies": {
+    "sharp": "^0.35.3"
+  }
+}
