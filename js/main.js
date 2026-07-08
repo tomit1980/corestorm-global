@@ -90,6 +90,7 @@
   /* ---------- Contact form ---------- */
   const form = document.getElementById("contactForm");
   const success = document.getElementById("formSuccess");
+  const errorBox = document.getElementById("formError");
 
   form.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -109,19 +110,38 @@
       return;
     }
 
-    // No backend on a static host — simulate a successful submission.
-    // Swap this block for a fetch() to Formspree/Netlify Forms/your API when live.
+    success.hidden = true;
+    errorBox.hidden = true;
+
     const btn = form.querySelector('button[type="submit"]');
     btn.disabled = true;
     btn.textContent = "Sending…";
 
-    setTimeout(() => {
-      form.reset();
-      btn.disabled = false;
-      btn.textContent = "Request My Quote";
-      success.hidden = false;
-      success.scrollIntoView({ behavior: "smooth", block: "nearest" });
-    }, 900);
+    // Submits to Formspree (see the form's action= attribute). Accept: json
+    // keeps this an in-page AJAX submission instead of a full-page redirect.
+    fetch(form.action, {
+      method: "POST",
+      body: new FormData(form),
+      headers: { Accept: "application/json" },
+    })
+      .then((res) => {
+        if (res.ok) {
+          form.reset();
+          success.hidden = false;
+          success.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        } else {
+          errorBox.hidden = false;
+          errorBox.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        }
+      })
+      .catch(() => {
+        errorBox.hidden = false;
+        errorBox.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      })
+      .finally(() => {
+        btn.disabled = false;
+        btn.textContent = "Request My Quote";
+      });
   });
 
   // Clear error styling as the user types

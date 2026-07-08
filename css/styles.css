@@ -404,6 +404,17 @@ img.img-error {
 .form-success strong { color: var(--wood-600); }
 .form-success p { color: var(--ink); margin-top: .2rem; }
 
+.form-error {
+  margin-top: 1.2rem;
+  background: rgba(192, 69, 69, .1);
+  border: 1.5px solid #c04545;
+  border-radius: 8px;
+  padding: 1rem 1.2rem;
+  font-size: .92rem;
+}
+.form-error strong { color: #c04545; }
+.form-error p { color: var(--ink); margin-top: .2rem; }
+
 /* ---------- Footer ---------- */
 .site-footer { background: var(--ocean); color: #a8bcc9; padding: 4rem 0 2rem; }
 .footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1.2fr; gap: 2.5rem; }

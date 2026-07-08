@@ -6,17 +6,19 @@
 
   <!-- Security: CSP allows only self-hosted assets, plus the exact JSON-LD
        block below via hash (recompute if that block's content changes —
-       see the node -e snippet in the security review). form-action is
-       scoped to 'self' until a real form backend is wired up. -->
+       see the node -e snippet in the security review). The contact form
+       submits to Formspree (office@corestormglobal.com), so form-action
+       and connect-src both allow that origin specifically. -->
   <meta http-equiv="Content-Security-Policy"
         content="default-src 'self';
                  img-src 'self' data:;
                  font-src 'self' data:;
                  style-src 'self';
                  script-src 'self' 'sha256-6swUAD31ybg935JdfkdoZfq/l2xflR7KH4ZZCOwAnKs=';
+                 connect-src 'self' https://formspree.io;
                  object-src 'none';
                  base-uri 'self';
-                 form-action 'self';">
+                 form-action 'self' https://formspree.io;">
   <meta name="referrer" content="strict-origin-when-cross-origin">
 
   <title>CoreStorm Global | Australian Solar &amp; Renewable Energy — Exported Worldwide</title>
@@ -420,7 +422,8 @@
           </ul>
         </div>
 
-        <form class="contact-form reveal delay-1" id="contactForm" novalidate>
+        <form class="contact-form reveal delay-1" id="contactForm" novalidate
+              action="https://formspree.io/f/maqgzkdz" method="POST">
           <div class="form-row">
             <div class="form-field">
               <label for="name">Full name *</label>
@@ -464,6 +467,10 @@
           <div class="form-success" id="formSuccess" role="status" hidden>
             <strong>Thank you — enquiry received.</strong>
             <p>A renewable energy specialist will be in touch within one business day.</p>
+          </div>
+          <div class="form-error" id="formError" role="alert" hidden>
+            <strong>Something went wrong.</strong>
+            <p>Your enquiry wasn't sent — please try again, or email us directly at <a href="mailto:office@corestormglobal.com">office@corestormglobal.com</a>.</p>
           </div>
         </form>
       </div>
